@@ -1,0 +1,37 @@
+{
+  "name": "weather-cloud-lite",
+  "version": "1.0.0",
+  "description": "Node and React based weather cloud without music controls.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avert1/Weather-Cloud-Lite.git"
+  },
+  "author": "Avery H",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avert1/Weather-Cloud-Lite/issues"
+  },
+  "homepage": "https://github.com/avert1/Weather-Cloud-Lite#readme",
+  "dependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
