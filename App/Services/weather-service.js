@@ -2,14 +2,17 @@
 const fetch = require('node-fetch');
 const key = require('../../key.json');
 
-function getCurrentWeather() {
+function getCurrentWeather(useProxy = false) {
   let locInfo = {
     city: "Dallas",
     state: "Texas",
     lat: 32.9596, //Addison latitude
     lng: -96.83, //Addison Longitude
   }
-  return fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/b35d6865f8de0d15839bbbbeba4b09f4/${locInfo.lat},${locInfo.lng}`)
+
+  let fetchUrl = `https://api.darksky.net/forecast/${key.key}/${locInfo.lat},${locInfo.lng}`;
+  let fetchProxy = 'https://cors-anywhere.herokuapp.com/';
+  return fetch((useProxy? fetchProxy + fetchUrl : fetchUrl))
   .then(response=>response.json())
   .then(resJson=>{
     console.log(resJson);
