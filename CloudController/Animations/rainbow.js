@@ -4,21 +4,21 @@ const LEDStripAnim = require('./LEDStripAnim.js');
 
 
 class rainbow extends LEDStripAnim {
-  constructor() {
-    super();
+  constructor(numLeds = 32) {
+    super(numLeds);
     this.animName = "Rainbow";
   }
 
 
   run() {
     let offset = 0;
-    this.interval = setInterval(function () {
-      for (let i = 0; i < NUM_LEDS; i++) {
-        pixelData[i] = colorwheel((offset + i) % 256);
+    this.interval = setInterval(() => {
+      for (let i = 0; i < this.numLeds; i++) {
+        this.pixelData[i] = this.colorwheel((offset + i) % 256);
       }
 
       offset = (offset + 1) % 256;
-      ws281x.render(pixelData);
+      ws281x.render(this.pixelData);
      }, 1000 / 30);
    }
 

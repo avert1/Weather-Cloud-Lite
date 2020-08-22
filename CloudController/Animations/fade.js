@@ -3,18 +3,18 @@ const helpers = require('./helpers.js');
 const LEDStripAnim = require('./LEDStripAnim.js');
 
 class fade extends LEDStripAnim {
-  constructor() {
-    super();
+  constructor(numLeds = 32) {
+    super(numLeds);
     this.increasing = true;
     this.brightnessOffset = 0;
     this.animName = "Fade";
   }
 
   run() {
-    for (let i = 0; i < NUM_LEDS; i++) {
-      pixelData[i] = helpers.rgb2Int(0,0,0);
+    for (let i = 0; i < this.numLeds; i++) {
+      this.pixelData[i] = helpers.rgb2Int(0,0,0);
     }
-    ws281x.render(pixelData);
+    ws281x.render(this.pixelData);
 
     this.interval = setInterval(function () {
       if(this.increasing) {
