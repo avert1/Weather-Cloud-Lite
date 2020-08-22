@@ -18,7 +18,11 @@ class fade extends LEDStripAnim {
 
     this.interval = setInterval(function () {
       if(this.increasing) {
-        offset = (offset + 1) % 256;
+        this.brightnessOffset += 1;
+        if(this.brightnessOffset >= 255) {
+          this.increasing = false;
+          this.brightnessOffset = 255;
+        }
       }
       else {
         this.brightnessOffset -=1;
