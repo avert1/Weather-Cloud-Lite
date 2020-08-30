@@ -45,6 +45,7 @@ class lightning extends LEDStripAnim {
   async rolling() {
   // a simple method where we go through every LED with 1/10 chance
   // of being turned on, up to 10 times, with a random delay wbetween each time
+    this.ws281x.setBrightness(220);
     for(let i=0; i < helpers.randomInt(2,10); i++){
       for(let j=0; j < this.numLeds; j++){
         if(helpers.randomInt(0,10)> 8){
@@ -57,9 +58,8 @@ class lightning extends LEDStripAnim {
       }
       this.ws281x.render(this.pixelData);
       await this.sleep(helpers.randomInt(5,100));
-      //delay(random(5,100));
-      this.reset();
     }
+    this.ws281x.setBrightness(0);
   }
 
   crack() {
