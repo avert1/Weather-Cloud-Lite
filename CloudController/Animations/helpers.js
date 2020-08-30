@@ -3,7 +3,7 @@ function rgb2Int(r, g, b) {
 }
 
 function randomInt (min, max) {
-  return Math.floor(Math.random()*max + min);
+  return Math.floor(Math.random()*(max-min) + min);
 }
 
 module.exports.rgb2Int = rgb2Int;

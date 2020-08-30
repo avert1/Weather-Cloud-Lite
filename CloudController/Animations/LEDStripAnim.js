@@ -6,6 +6,7 @@ class LEDStripAnim {
     this.interval = null;
     this.pixelData = new Uint32Array(numLeds);
     this.numLeds = numLeds;
+    this.ws281x = ws281x;
     /*this.emptyPixelArray = new Uint32Array(numLeds);
     for (let i = 0; i < this.numLeds; i++) {
       emptyPixelArray[i] = helpers.rgb2Int(0,0,0));
@@ -22,7 +23,7 @@ class LEDStripAnim {
   }
 
   reset() {
-    ws281x.reset();
+    this.ws281x.reset();
   }
 
 

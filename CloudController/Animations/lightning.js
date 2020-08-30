@@ -48,14 +48,14 @@ class lightning extends LEDStripAnim {
     for(let i=0; i < helpers.randomInt(2,10); i++){
       for(let j=0; j < this.numLeds; j++){
         if(helpers.randomInt(0,10)> 8){
-        this.pixelData[i] = helpers.rgb2Int( 0, 0, 255);
+        this.pixelData[j] = helpers.rgb2Int( 0, 0, 255);
 
         } else{
           //dont need reset as we're blacking out other LEDs her
-          this.pixelData[i] = helpers.rgb2Int(0,0,0);
+          this.pixelData[j] = helpers.rgb2Int(0,0,0);
         }
       }
-      ws281x.render(this.pixelData);
+      this.ws281x.render(this.pixelData);
       await this.sleep(helpers.randomInt(5,100));
       //delay(random(5,100));
       this.reset();
@@ -67,7 +67,7 @@ class lightning extends LEDStripAnim {
      for(let i=0; i < this.numLeds; i++) {
         this.pixelData[i] = helpers.rgb2Int( 0, 0, 255);
      }
-     ws281x.render(this.pixelData);
+     this.ws281x.render(this.pixelData);
      this.reset();
   }
 /*
