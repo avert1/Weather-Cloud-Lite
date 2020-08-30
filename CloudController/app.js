@@ -43,11 +43,6 @@ class LEDStripController {
     }, 5 * 60 * 1000)
   }
 
-  /*process.on('SIGINT', function () {
-    ws281x.reset();
-    process.nextTick(function () { process.exit(0); });
-  });*/
-
   updateLightProcess(weatherName) {
     console.log("Here!");
     if(this.currentLightProcess != null) {
@@ -74,5 +69,10 @@ class LEDStripController {
 }
 
 module.exports = LEDStripController;
+
+process.on('SIGINT', function () {
+  ws281x.reset();
+  process.nextTick(function () { process.exit(0); });
+});
 
 let stripController = new LEDStripController();
