@@ -1,6 +1,7 @@
 const ws281x = require('rpi-ws281x-native');
 const rainbowPattern = require('./Animations/rainbow.js');
 const fadePattern = require('./Animations/fade.js');
+const lightningPattern = require('./Animations/lightning.js');
 const weatherService = require('../App/Services/weather-service.js');
 
 
@@ -15,6 +16,7 @@ class LEDStripController {
     //Anim class init. Maybe change this to function style
     let rainbow = new rainbowPattern.rainbow(this.NUM_LEDS);
     let fade = new fadePattern.fade(this.NUM_LEDS);
+    let lightning = new lightningPattern.lightning(this.NUM_LEDS);
 
     this.lightProcessMap = {
       "clear-day": fade,
@@ -25,13 +27,12 @@ class LEDStripController {
       "sleet": fade,
       "wind": fade,
       "fog": fade,
-      //Not actually a value
-      "thunderstorm": fade,
-      "rain": fade,
+      "thunderstorm": lightning, //Not an actual value currently
+      "rain": lightning,
     }
 
     ws281x.init(this.NUM_LEDS);
-    this.updateLightProcess("test");
+    this.updateLightProcess("rain");
 
     //Get weather
     setInterval(() => {
@@ -48,6 +49,7 @@ class LEDStripController {
   });*/
 
   updateLightProcess(weatherName) {
+    console.log("Here!");
     if(this.currentLightProcess != null) {
       this.currentLightProcess.stop();
     }
@@ -72,3 +74,5 @@ class LEDStripController {
 }
 
 module.exports = LEDStripController;
+
+let stripController = new LEDStripController();
