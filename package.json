@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rpi-ws281x-native": "^0.10.0"
