@@ -1,4 +1,5 @@
 const ws281x = require('rpi-ws281x-native');
+const helpers = require('./helpers.js');
 
 class LEDStripAnim {
 
@@ -32,6 +33,12 @@ class LEDStripAnim {
 
   reset() {
     this.ws281x.reset();
+  }
+
+  clear() {
+    for(let i=0; i < this.numLeds; i++) {
+       this.pixelData[i] = helpers.rgb2Int( 0, 0, 0);
+    }
   }
 
 

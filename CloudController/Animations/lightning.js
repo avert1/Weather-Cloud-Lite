@@ -61,6 +61,8 @@ class lightning extends LEDStripAnim {
       await this.sleep(helpers.randomInt(5,100));
     }
     this.ws281x.setBrightness(0);
+    this.clear();
+
   }
 
   async crack() {
@@ -72,6 +74,7 @@ class lightning extends LEDStripAnim {
      this.ws281x.render(this.pixelData);
      await this.sleep(helpers.randomInt(50,100));
      this.ws281x.setBrightness(0);
+     this.clear();
   }
 
   async thunderburst() {
@@ -80,9 +83,9 @@ class lightning extends LEDStripAnim {
     // this thunder works by lighting two random lengths
     // of the strand from 10-20 pixels.
     let rs1 = helpers.randomInt(0, this.numLeds/2);
-    let rl1 = helpers.randomInt(10,20);
+    let rl1 = helpers.randomInt(5,10);
     let rs2 = helpers.randomInt(rs1+rl1, this.numLeds);
-    let rl2 = helpers.randomInt(10,20);
+    let rl2 = helpers.randomInt(5,10);
 
     //repeat this chosen strands a few times, adds a bit of realism
     for(let r = 0; r < helpers.randomInt(3,6); r++){
@@ -91,18 +94,23 @@ class lightning extends LEDStripAnim {
         this.pixelData[i+rs1] = helpers.rgb2Int( 255, 255, 255);
       }
 
+      this.ws281x.render(this.pixelData);
+      //stay illuminated for a set time
+      await this.sleep(helpers.randomInt(10,50));
+      this.clear();
+
+
       if(rs2+rl2 < this.numLeds){
         for(let i=0;i < rl2; i++){
           this.pixelData[i+rs2] = helpers.rgb2Int( 255, 255, 255);
         }
       }
-
       this.ws281x.render(this.pixelData);
-      //stay illuminated for a set time
       await this.sleep(helpers.randomInt(10,50));
 
       this.ws281x.setBrightness(0);
       await this.sleep(helpers.randomInt(10,50));
+      this.clear();
     }
 
   }
