@@ -65,6 +65,7 @@ class lightning extends LEDStripAnim {
 
   async crack() {
      //turn everything white briefly
+     this.ws281x.setBrightness(220);
      for(let i=0; i < this.numLeds; i++) {
         this.pixelData[i] = helpers.rgb2Int( 255, 255, 255);
      }
@@ -75,6 +76,7 @@ class lightning extends LEDStripAnim {
 
   async thunderburst() {
 
+    this.ws281x.setBrightness(220);
     // this thunder works by lighting two random lengths
     // of the strand from 10-20 pixels.
     let rs1 = helpers.randomInt(0, this.numLeds/2);
