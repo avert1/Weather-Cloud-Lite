@@ -12,11 +12,10 @@ class lightning extends LEDStripAnim {
 
   run() {
     let offset = 0;
-    this.interval = setInterval(() => {
       switch(helpers.randomInt(1,4)){
         case 1:
-          //this.thunderburst();
-          this.rolling();
+          this.thunderburst();
+          //this.rolling();
           //delay(helpers.randomInt(10,500));
            console.log("Thunderburst");
           break;
@@ -27,12 +26,14 @@ class lightning extends LEDStripAnim {
           break;
 
         default:
-          //this.crack();
-          this.rolling();
+          this.crack();
+          //this.rolling();
           //delay(random(50,250));
           console.log("Crack");
           break;
       }
+      this.timeout = setTimeout(() => {
+        this.run();
     //random number between 1 - 5 seconds
     }, Math.random() * 5000 + 1000);
   }
@@ -49,7 +50,7 @@ class lightning extends LEDStripAnim {
     for(let i=0; i < helpers.randomInt(2,10); i++){
       for(let j=0; j < this.numLeds; j++){
         if(helpers.randomInt(0,10)> 8){
-        this.pixelData[j] = helpers.rgb2Int( 0, 0, 255);
+        this.pixelData[j] = helpers.rgb2Int( 255, 255, 255);
 
         } else{
           //dont need reset as we're blacking out other LEDs her
@@ -62,46 +63,47 @@ class lightning extends LEDStripAnim {
     this.ws281x.setBrightness(0);
   }
 
-  crack() {
+  async crack() {
      //turn everything white briefly
      for(let i=0; i < this.numLeds; i++) {
-        this.pixelData[i] = helpers.rgb2Int( 0, 0, 255);
+        this.pixelData[i] = helpers.rgb2Int( 255, 255, 255);
      }
      this.ws281x.render(this.pixelData);
-     this.reset();
+     await this.sleep(helpers.randomInt(50,100));
+     this.ws281x.setBrightness(0);
   }
-/*
-  thunderburst() {
+
+  async thunderburst() {
 
     // this thunder works by lighting two random lengths
     // of the strand from 10-20 pixels.
-    int rs1 = random(0, this.numLeds/2);
-    int rl1 = random(10,20);
-    int rs2 = random(rs1+rl1, this.numLeds);
-    int rl2 = random(10,20);
+    let rs1 = helpers.randomInt(0, this.numLeds/2);
+    let rl1 = helpers.randomInt(10,20);
+    let rs2 = helpers.randomInt(rs1+rl1, this.numLeds);
+    let rl2 = helpers.randomInt(10,20);
 
     //repeat this chosen strands a few times, adds a bit of realism
-    for(int r = 0; r < random(3,6); r++){
+    for(let r = 0; r < helpers.randomInt(3,6); r++){
 
-      for(int i = 0; i < rl1; i++){
-        leds[i+rs1] = helpers.rgb2Int( 0, 0, 255);
+      for(let i = 0; i < rl1; i++){
+        this.pixelData[i+rs1] = helpers.rgb2Int( 255, 255, 255);
       }
 
       if(rs2+rl2 < this.numLeds){
-        for(int i=0;i < rl2; i++){
-          this.pixelData[i+rs2] = helpers.rgb2Int( 0, 0, 255);
+        for(let i=0;i < rl2; i++){
+          this.pixelData[i+rs2] = helpers.rgb2Int( 255, 255, 255);
         }
       }
 
-      ws281x.render(this.pixelData);
+      this.ws281x.render(this.pixelData);
       //stay illuminated for a set time
-      delay(random(10,50));
+      await this.sleep(helpers.randomInt(10,50));
 
-      this.reset();
-      delay(random(10,50));
+      this.ws281x.setBrightness(0);
+      await this.sleep(helpers.randomInt(10,50));
     }
 
-  }*/
+  }
 }
 
 module.exports.lightning = lightning;

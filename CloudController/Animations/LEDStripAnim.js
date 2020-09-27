@@ -4,6 +4,7 @@ class LEDStripAnim {
 
   constructor(numLeds) {
     this.interval = null;
+    this.timeout = null;
     this.pixelData = new Uint32Array(numLeds);
     this.numLeds = numLeds;
     this.ws281x = ws281x;
@@ -19,7 +20,14 @@ class LEDStripAnim {
   }
 
   stop() {
-    clearInterval(this.interval);
+    if(this.interval != null) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+    if(this.timeout != null) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
 
   reset() {
