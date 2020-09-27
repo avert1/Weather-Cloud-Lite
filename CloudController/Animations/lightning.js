@@ -12,27 +12,27 @@ class lightning extends LEDStripAnim {
 
   run() {
     let offset = 0;
-      switch(helpers.randomInt(1,5)){
-        case 1:
-          this.thunderburst();
-          //this.rolling();
-           console.log("Thunderburst");
-          break;
+    switch(helpers.randomInt(1,5)){
+      case 1:
+        this.thunderburst();
+        //this.rolling();
+         console.log("Thunderburst");
+        break;
 
-        case 2:
-          this.crack();
-          console.log("Crack");
-          break;
+      case 2:
+        this.crack();
+        console.log("Crack");
+        break;
 
-        default:
-          this.rolling();
-          console.log("Rolling");
-          break;
-      }
-      this.timeout = setTimeout(() => {
-        this.run();
+      default:
+        this.rolling();
+        console.log("Rolling");
+        break;
+    }
+  this.timeout = setTimeout(() => {
+    this.run();
     //random number between 1 - 5 seconds
-    }, Math.random() * 5000 + 1000);
+  }, Math.random() * 4000 + 1000);
   }
 
   sleep(ms) {
