@@ -21,7 +21,7 @@
   "homepage": "https://github.com/avert1/Weather-Cloud-Lite#readme",
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
